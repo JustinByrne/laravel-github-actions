@@ -69,12 +69,6 @@ jobs:
         with:
           ref: production
       - uses: actions/checkout@v2
-        with:
-          ref: production
-      - name: Reset production branch
-        run: |
-          git fetch origin main:main
-          git reset --hard main
       - name: Compile assets
         run: |
           npm install
