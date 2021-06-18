@@ -68,16 +68,21 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: production
-      - uses: actions/checkout@v2
+      - name: Reset production branch
+        run: |
+          git fetch origin main:main
+          git reset --hard main
       - name: Compile assets
         run: |
           npm install
           npm run production
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+      - name: Commit files
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "Updated assets" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
-          commit-message: updated assets
-          title: Updating assets
-          body: This PR has been generated directly from github actions after successful testing and building jobs
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: production
-          base: main
