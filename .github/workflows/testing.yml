@@ -80,3 +80,4 @@ jobs:
           title: Updating assets
           body: This PR has been generated directly from github actions after successful testing and building jobs
           branch: production
+          base: main
