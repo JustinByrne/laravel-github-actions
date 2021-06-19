@@ -70,7 +70,8 @@ jobs:
           ref: production
       - name: Reset production branch
         run: |
-          git merge origin/main -s ours
+          git fetch origin main:main
+          git merge main -s ours
       - name: Compile assets
         run: |
           npm install
