@@ -72,6 +72,7 @@ jobs:
         run: |
           git fetch origin main:main
           git reset --hard main
+          git pull
       - name: Compile assets
         run: |
           npm install
