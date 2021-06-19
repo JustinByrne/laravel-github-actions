@@ -70,10 +70,7 @@ jobs:
           ref: production
       - name: Reset production branch
         run: |
-          git config pull.rebase true
-          git fetch origin main:main
-          git reset --hard main
-          git pull
+          git rebase main
       - name: Compile assets
         run: |
           npm install
